@@ -130,9 +130,3 @@ class Body():
 
         acceleration = displacement.normalize() * other.mass * self.G / (distance ** 2)
         self.velocity += acceleration * 86400
-
-# make it possible to skip ahead in time (ideally skip to an important event - 
-# for example an alignment of two or more planets of interest)
-# add a counter that counts days (1 real second is one day)
-# make axis size change with farthest body - maybe make axis pan out
-# add thrust for spacecraft
