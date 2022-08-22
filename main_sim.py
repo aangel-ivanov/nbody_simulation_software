@@ -1,6 +1,6 @@
 from itertools import cycle
 from vector_class import Vec3D
-from nbody_classes import System, Body
+from nbody_classes_euler import System, Body
 from solar_system import add_SolarSystem
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
