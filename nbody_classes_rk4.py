@@ -5,11 +5,10 @@ from vector_class import Vec3D, Vec2D
 
 
 class System():
-    bodies = [] # all bodies in the system
-    n = 0 # number of bodies
+    # n = 0 # number of bodies
     def __init__(self, size):
-        self.i = System.n # particle index
-
+        # self.i = System.n # particle index
+        self.bodies = [] # all bodies in the system
         self.size = size # size of system
         self.G = 1.19059e-19 # gravitational constant in AU / s^2 * earth masses
 
@@ -24,8 +23,8 @@ class System():
         self.ax.view_init(20, 30) # set initial perspective
 
     def add_body(self, body):
-        System.bodies.append(body)
-        System.n += 1
+        self.bodies.append(body)
+        # System.n += 1
 
     def total_energy(self): # track total energy to monitor accuracy
         Energy = 0
@@ -139,12 +138,10 @@ class Body():
         def Newton(self, other):
             displacement = other.position - self.position
             distance = displacement.get_length()
-
             self.acceleration += displacement.normalize() * other.mass * self.G / (distance ** 2)
 
-        bodies_copy = System.bodies.copy() 
-        for j in bodies_copy: # for every body update force due to every other body
-            if System.bodies[self.system.i] != j:
-                Newton(System.bodies[self.system.i], j)
+        bodies_copy = self.system.bodies.copy() 
+        for i in bodies_copy:
+            if self != i:
+                Newton(self, i)
         return np.array([self.velocity, self.acceleration])
-
